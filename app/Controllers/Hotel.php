@@ -39,6 +39,7 @@ class Hotel extends BaseController
             'email' => !empty($this->request->getPost('email')) ? $this->request->getPost('email') : NULL,
         );
         $this->hotel->updatedata($idhotel,$data,);
+        session()->setFlashdata("success", "Data Hotel Berhasil Diupdate");
         return redirect()->to(base_url('hotel'));
     }
 }

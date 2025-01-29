@@ -19,13 +19,8 @@ class Tipekamar extends BaseController
         $data = array (
           'title' => 'Data Tipe kamar',          
           'isi'=> 'listtipekamar',
-            'css' => '
-            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css"/>
-            ',
-            'js' => '
-            <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.js"></script>
-            ',
         );
+        // session()->setFlashdata("success", "This is success message");
         echo view('layout/wraper',$data);
     }
 
@@ -93,7 +88,9 @@ class Tipekamar extends BaseController
             'ukuran' => !empty($this->request->getPost('ukuran')) ? $this->request->getPost('ukuran') : NULL,
         );        
         $this->kamar->insertdata($data);
+        session()->setFlashdata("success", "Tipe Kamar Berhasil Ditambahkan");
         return redirect()->to(base_url('tipekamar'));
+    
     }
 
     public function edit($id)
@@ -139,6 +136,7 @@ class Tipekamar extends BaseController
             'namatipe'      => $datakamar->namatipe,
             'ukuran'        => $datakamar->ukuran,
         );
+        // session()->setFlashdata("success", "This is success message");
         echo view("layout/wraper",$data);
     }
 
@@ -150,13 +148,15 @@ class Tipekamar extends BaseController
             'namatipe' => !empty($this->request->getPost('namatipe')) ? $this->request->getPost('namatipe') : NULL,
             'ukuran' => !empty($this->request->getPost('ukuran')) ? $this->request->getPost('ukuran') : NULL,
         );        
-        $this->kamar->updatedata($idkamar,$data);        
+        $this->kamar->updatedata($idkamar,$data);
+        session()->setFlashdata("success", "Tipe Kamar Berhasil Diupdate");        
         return redirect()->to(base_url('tipekamar'));
     }
 
     public function delete($id) 
     {
         $this->kamar->hapusdata($id);
+        session()->setFlashdata("success", "Tipe Kamar Berhasil Dihapus");
         return redirect()->to(base_url('tipekamar'));
     }
 }

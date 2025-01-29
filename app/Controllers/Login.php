@@ -27,7 +27,7 @@ class Login extends BaseController
 
         $password = hash("sha512",sha1(md5(sha1(md5($pass)))));
 
-        if ($data=$this->login->loginprocces($username,$password))
+        if ($data=$this->login->loginprocces($username,$pass))
         {
             $session = session();
             $ses_data = [

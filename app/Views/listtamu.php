@@ -1,39 +1,73 @@
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.css">
+<script>
+$(function(){
+    <?php if(session()->has("success")) { ?>
+        Swal.fire({
+            icon: 'success',
+            title: 'Sukses',
+            text: '<?= session("success") ?>'
+        })
+    <?php } ?>
+});
+</script>
 <!-- page content -->
-<div class="right_col" role="main">
-	<div class="">
-		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12">				
-				<div class="x_panel">
-					<div class="x_title">
-						<h2><?php echo $title ?></h2>
-						<ul class="nav navbar-right panel_toolbox">
-							<a href="<?php echo base_url('tamu/create') ?>"><li><button type="button" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Create</button></li></a>
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-					<div class="x_content">
-						<table id="tamu" class="table table-striped table-bordered">
-							<thead>
-								<tr>
-									<th>Nama</th>
-									<th>Alamat</th>
-									<th>Telpon</th>
-									<th>Email</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <!-- Basic Layout & Basic with Icons -->
+              <div class="row">
+                <!-- Basic Layout -->
+                
+
+<!-- Striped Rows -->
+<div class="card">
+  <div class="card-header">
+    <h5><div class="card-title"><?php echo $title ?></div></h5>
+    <a href="<?php echo base_url('tamu/create') ?>" class="btn btn-success btn-sm"><i class="fa fa-plus m-2"></i>Create</a>
+  </div>
+  
+  <div class="card-body">
+    <table id="tamu" class="uk-table uk-table-hover uk-table-striped" style="width: 100%;">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Alamat</th>
+          <th>Telepon</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
 </div>
-<script src="<?php echo base_url('public/asset/js/jquery-3.5.1.min.js')?>"></script>
-<script src="<?php echo base_url('public/asset/js/jquery.dataTables.min.js');?>"></script>
+<!--/ Striped Rows -->
+              </div>
+            </div>
+            <!-- / Content -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+        
+          <!-- Content wrapper -->
+           <!-- Data Tables CSS -->
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/css/uikit.min.css">
+           <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.uikit.css">
+           <!-- Data Tables JS -->
+          <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/js/uikit.min.js"></script>
+          <script src=""></script>
+          <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+          <script src="https://cdn.datatables.net/2.2.1/js/dataTables.uikit.js"></script>
 
 <script>
 
@@ -41,28 +75,27 @@ var site_url = "<?php echo base_url('tamu'); ?>";
 
 $(document).ready( function () {
 
-    $("#tamu").DataTable({
-        lengthMenu: [[ 10, 30, -1], [ 10, 30, "All"]], // page length options
-        bProcessing: true,
-        serverSide: true,
-        scrollY: "400px",
-        scrollCollapse: true,
-        ajax: {
-        url: site_url + "/ajaxloaddata", // json datasource
+  $("#tamu").DataTable({
+    lengthMenu: [[10, 30, -1], [10, 30, "All"]],
+    bProcessing: true,
+    serverSide: true,
+    ajax: {
+        url: site_url + "/ajaxloaddata",
         type: "post",
         data: {}
-        },
-        columns: [        
+    },
+    columns: [
         { data: "nama" },
         { data: "alamat" },
         { data: "phone" },
         { data: "email" },
-        { data: "action" },
-        ],
-        columnDefs: [
-        { orderable: false, targets: [0, 1, 2, 3,4] }
-        ],
-        bFilter: true, // to display datatable search
-    });
+        { data: "action" }
+    ],
+    columnDefs: [
+        { orderable: false, targets: [0, 1, 2, 3, 4] }
+    ],
+    bFilter: true
+});
+
 });
 </script>

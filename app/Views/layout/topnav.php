@@ -1,45 +1,56 @@
-<!-- top navigation -->
-<div class="top_nav">
-	<div class="nav_menu">
-		<nav>
-			<div class="nav toggle">
-				<a id="menu_toggle"><i class="fa fa-bars"></i></a>
-			</div>
-			
-			<ul class="nav navbar-nav navbar-right">
-				<li class="">
-					<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						Admin
-					</a>
-					<ul class="dropdown-menu dropdown-usermenu pull-right">
-						<li><a href="javascript:;"> Profile</a></li>
-						<li>
-							<a href="javascript:;">
-								<span class="badge bg-red pull-right">50%</span>
-								<span>Settings</span>
-							</a>
-						</li>
-						<li><a href="javascript:;">Help</a></li>
-						<li><a href="<?php echo site_url('authentication/signout') ?>"><i class="fa fa-sign-out pull-right"></i> Sign Out</a></li>
-					</ul>
-				</li>
-				<li role="presentation" class="dropdown">
-					
-					<ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-						
-						<li>
-							<div class="text-center">
-								<a href="<?php echo site_url('contactus') ?>">
-									<strong>See All Messages</strong>
-									<i class="fa fa-angle-right"></i>
-								</a>
-							</div>
-						</li>
-					</ul>
-				</li>
-			</ul>
-		</nav>
-	</div>
-</div>
+<div class="layout-page">
+          <!-- Navbar -->
 
-<!-- /top navigation -->
+          <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
+                <i class="bx bx-menu bx-md"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+             
+
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <!-- Place this tag where you want the button to render. -->
+                <li class="nav-item lh-1 me-4">
+                  <span></span>
+                </li>
+
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow p-0" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="<?= base_url('public/assets/img/avatars/1.png') ?>" alt="" class="w-px-40 h-auto rounded-circle">
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="<?= base_url('public/assets/img/avatars/1.png') ?>" alt="" class="w-px-40 h-auto rounded-circle">
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <h6 class="mb-0">Admin</h6>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider my-1"></div>
+                    </li>
+                  
+                    <li>
+                      <a class="dropdown-item" href="<?php echo base_url('Login/logout') ?>">
+                        <i class="bx bx-power-off bx-md me-3"></i><span>Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+          </nav>

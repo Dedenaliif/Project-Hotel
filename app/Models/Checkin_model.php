@@ -23,11 +23,16 @@ class Checkin_model extends Model
         return $data->getResultArray();
     }
 
-    function get_harga($idkamar)
+    public function get_harga($idkamar)
     {
-        $data = $this->query('select price from tbl_kamar where id='.$idkamar);
-        return $data->getRow()->price;
+        return $this->db->table('tbl_kamar')
+                        ->select('price')
+                        ->where('id', $idkamar)
+                        ->get()
+                        ->getRow()
+                        ->price;
     }
+    
 
     function insertdata($data)
     {

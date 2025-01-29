@@ -102,6 +102,7 @@ class Kamar extends BaseController
             'allotment' => !empty($this->request->getPost('allotment')) ? $this->request->getPost('allotment') : NULL,
         );        
         $this->kamar->insertdata($data);
+        session()->setFlashdata("success","Data Berhasil Ditambahkan");
         return redirect()->to(base_url('kamar'));
     }
 
@@ -162,13 +163,15 @@ class Kamar extends BaseController
             'price' => !empty($this->request->getPost('price')) ? $this->request->getPost('price') : NULL,
             'allotment' => !empty($this->request->getPost('allotment')) ? $this->request->getPost('allotment') : NULL,
         );        
-        $this->kamar->updatedata($id,$data);        
+        $this->kamar->updatedata($id,$data);     
+        session()->setFlashdata("success", "Kamar Berhasil Diupdate");      
         return redirect()->to(base_url('kamar'));
     }
 
     public function delete($id) 
     {
         $this->kamar->hapusdata($id);
+        session()->setFlashdata("success", "Kamar Berhasil Dihapus");   
         return redirect()->to(base_url('kamar'));
     }
 }

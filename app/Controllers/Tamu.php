@@ -94,6 +94,7 @@ class Tamu extends BaseController
             'email' => !empty($this->request->getPost('email')) ? $this->request->getPost('email') : NULL,
         );        
         $this->tamu->insertdata($data);
+        session()->setFlashdata("success","Data Berhasil Ditambahkan");
         return redirect()->to(base_url('tamu'));
     }
 
@@ -153,13 +154,15 @@ class Tamu extends BaseController
             'email' => !empty($this->request->getPost('email')) ? $this->request->getPost('email') : NULL,
             'phone' => !empty($this->request->getPost('phone')) ? $this->request->getPost('phone') : NULL,
         );        
-        $this->tamu->updatedata($id,$data);        
+        $this->tamu->updatedata($id,$data);
+        session()->setFlashdata("success","Data Tamu Berhasil Diupdate");        
         return redirect()->to(base_url('tamu'));
     }
 
     public function delete($id) 
     {
         $this->tamu->hapusdata($id);
+        session()->setFlashdata("success","Data Tamu Berhasil Dihapus");
         return redirect()->to(base_url('tamu'));
     }
 
@@ -168,12 +171,6 @@ class Tamu extends BaseController
         $data = array (
             'title' => 'History Tamu',          
             'isi'=> 'historytamu',
-            'css' => '
-            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css"/>
-            ',
-            'js' => '
-            <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.js"></script>
-            ',
             'datatamu' => $this->tamu->get_databyid($idtamu),
         );
         echo view('layout/wraper',$data);
@@ -181,14 +178,16 @@ class Tamu extends BaseController
 
     public function ajaxhistory($idtamu)
     {                           
-        $data = $this->tamu->total_historydata($idtamu);
-        
-        $json_data = array(     
-            "recordsTotal" => count($data),
-            "recordsFiltered" => count($data),                   
-            "data" => $data,            
-        );
+        // Ambil data history berdasarkan id tamu
+    $data = $this->tamu->get_history_by_tamu_id($idtamu);
+    
+    // Siapkan data untuk JSON response
+    $json_data = array(     
+        "recordsTotal" => count($data),
+        "recordsFiltered" => count($data),                   
+        "data" => $data,            
+    );
 
-        echo json_encode($json_data);
+    echo json_encode($json_data);
     }
 }

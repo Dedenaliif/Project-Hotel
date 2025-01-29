@@ -60,6 +60,7 @@ class Inhouse extends BaseController
             'status' => 2
         );
         $this->inhouse->checkout($data,$id);
+        session()->setFlashdata("success2","Tamu Telah Checkout");
         return redirect()->to(base_url('inhouse'));
     }
 }

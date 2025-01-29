@@ -59,9 +59,13 @@ class Tamu_model extends Model
         limit $start, $length")->getResult();
     }
 
-    function total_historydata($idtamu)
+    public function get_history_by_tamu_id($idtamu)
     {
-        return $this->db->query("SELECT c.checkin, c.duration, t.nama, tk.namatipe, k.nokamar FROM tbl_checkin c LEFT JOIN tbl_tamu t ON c.idtamu=t.id
-        LEFT JOIN tbl_kamar k ON c.idkamar=k.id LEFT JOIN tbl_tipekamar tk ON k.idtipekamar=tk.idkamar WHERE idtamu=".$idtamu)->getResultArray();
+        return $this->db->query("SELECT c.checkin, c.duration, tk.namatipe, k.nokamar 
+                                 FROM tbl_checkin c 
+                                 LEFT JOIN tbl_kamar k ON c.idkamar = k.id 
+                                 LEFT JOIN tbl_tipekamar tk ON k.idtipekamar = tk.idkamar 
+                                 WHERE c.idtamu = ?", [$idtamu])->getResultArray();
     }
+    
 }

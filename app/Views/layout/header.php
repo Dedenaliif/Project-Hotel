@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<!-- Meta, title, CSS, favicons, etc. -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title><?= $title ?? 'Default Title'; ?></title>
+  
+  <!-- Meta -->
+  <meta name="description" content="" />
 
-		<title><?php echo $title ?></title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="<?= base_url('public/assets/img/favicon/favicon.ico'); ?>" />
 
-		<!-- Bootstrap -->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-		<!-- Font Awesome -->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<!-- NProgress -->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
-		<!-- Dynamic CSS -->
-		<?php if(!empty($css)){ echo $css; }?>
-		<link href="<?php echo base_url() ?>/public/asset/css/custom.css" rel="stylesheet">		
-	</head>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-	<body class="nav-md">
-		<div class="container body">
-			<div class="main_container">			
-				
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="<?= base_url('public/assets/vendor/css/core.css'); ?>" />
+  <link rel="stylesheet" href="<?= base_url('public/assets/vendor/css/theme-default.css'); ?>" />
+  <link rel="stylesheet" href="<?= base_url('public/assets/css/demo.css'); ?>" />
+
+  <!-- Vendors CSS -->
+  <link rel="stylesheet" href="<?= base_url('public/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css'); ?>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- JS Helpers -->
+  <script src="<?= base_url('public/assets/vendor/js/helpers.js'); ?>"></script>
+  <script src="<?= base_url('public/assets/js/config.js'); ?>"></script>
+</head>
+<body>
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+	<!-- <div class="layout-page"> -->
+		
